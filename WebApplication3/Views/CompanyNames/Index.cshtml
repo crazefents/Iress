@@ -1,28 +1,33 @@
 ﻿@model IEnumerable<WebApplication3.Models.CompanyName>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Company Name";
 }
 
-<h2>Index</h2>
+<h2>Company Name</h2>
 
 <p>
 
 
     @Html.ActionLink("Create New", "Create")
+ 
 
     @using (Html.BeginForm())
     {
     <p>
         Exchange: @Html.DropDownList("ExchangeCode", "All")
+        </p>
+        <p>
         Type of Company: @Html.DropDownList("CompanyTypeID", "All")
+            </p>
+            <p>
         Enter Search: @Html.TextBox("SearchString") <br />
         <input class="btn btn-default" type="submit" value="Filter" />
     </p>
     }
     
 </p>
-<table class="table table-striped table-hover ">
+<table class="table table-striped info table-hover ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CompanyName1)

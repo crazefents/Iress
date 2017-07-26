@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SubsidiariesModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Association">
+    <Key>
+      <PropertyRef Name="AssocID" />
+    </Key>
+    <Property Name="CompanyID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="AssocID" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="AssocType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AssPercent" Type="int" Nullable="false" />
+    <Property Name="DirectRel" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="UpdateDate" Type="date" Nullable="false" />
+    <Property Name="ChangeDate" Type="date" Nullable="false" />
+    <Property Name="NoShares_YN" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssociationType">
+    <Key>
+      <PropertyRef Name="AssocType" />
+    </Key>
+    <Property Name="AssocType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="225" />
+    <Property Name="UpdateDate" Type="date" />
+  </EntityType>
+  <EntityType Name="CompanyName">
+    <Key>
+      <PropertyRef Name="CompanyID" />
+    </Key>
+    <Property Name="CompanyID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ExchangeCode" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="CompanyName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ShortCode" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="CountryID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="BusinessSectorID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="CompanyTypeID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="UpdateDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CompanyType">
+    <Key>
+      <PropertyRef Name="CompanyTypeID" />
+    </Key>
+    <Property Name="CompanyTypeID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CompanyTypeDesc" Type="varchar" MaxLength="20" />
+    <Property Name="UpdateDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Exchange">
+    <Key>
+      <PropertyRef Name="ExchangeCode" />
+    </Key>
+    <Property Name="ExchangeCode" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ExchangeName" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="CountryID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="UpdateDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Investment">
+    <Key>
+      <PropertyRef Name="InvestID" />
+    </Key>
+    <Property Name="CompanyID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="InvestID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="InvestType" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="InvPercent" Type="int" Nullable="false" />
+    <Property Name="DirectRel" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="UpdateDate" Type="date" Nullable="false" />
+    <Property Name="ChangeDate" Type="date" Nullable="false" />
+    <Property Name="NoShares_YN" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvestmentType">
+    <Key>
+      <PropertyRef Name="InvestType" />
+    </Key>
+    <Property Name="InvestType" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="UpdateDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subsidiaries">
+    <Key>
+      <PropertyRef Name="SubsiID" />
+    </Key>
+    <Property Name="CompanyID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SubsiID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SubType" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SubPercent" Type="int" Nullable="false" />
+    <Property Name="DirectRel" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="UpdateDate" Type="date" Nullable="false" />
+    <Property Name="ChangeDate" Type="date" Nullable="false" />
+    <Property Name="NoShares_YN" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubsidiariesType">
+    <Key>
+      <PropertyRef Name="SubType" />
+    </Key>
+    <Property Name="SubType" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="225" Nullable="false" />
+    <Property Name="UpdateDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Association_CompanyName">
+    <End Role="CompanyName" Type="Self.CompanyName" Multiplicity="1" />
+    <End Role="Association" Type="Self.Association" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyName">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Association">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssociationType">
+    <End Role="AssociationType" Type="Self.AssociationType" Multiplicity="1" />
+    <End Role="Association" Type="Self.Association" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AssociationType">
+        <PropertyRef Name="AssocType" />
+      </Principal>
+      <Dependent Role="Association">
+        <PropertyRef Name="AssocType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyName_CompanyName">
+    <End Role="Exchange" Type="Self.Exchange" Multiplicity="1" />
+    <End Role="CompanyName" Type="Self.CompanyName" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exchange">
+        <PropertyRef Name="ExchangeCode" />
+      </Principal>
+      <Dependent Role="CompanyName">
+        <PropertyRef Name="ExchangeCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyName_CompanyName1">
+    <End Role="CompanyType" Type="Self.CompanyType" Multiplicity="1" />
+    <End Role="CompanyName" Type="Self.CompanyName" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyType">
+        <PropertyRef Name="CompanyTypeID" />
+      </Principal>
+      <Dependent Role="CompanyName">
+        <PropertyRef Name="CompanyTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Investment_CompanyName">
+    <End Role="CompanyName" Type="Self.CompanyName" Multiplicity="1" />
+    <End Role="Investment" Type="Self.Investment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyName">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Investment">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Investment_InvestmentType">
+    <End Role="InvestmentType" Type="Self.InvestmentType" Multiplicity="1" />
+    <End Role="Investment" Type="Self.Investment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InvestmentType">
+        <PropertyRef Name="InvestType" />
+      </Principal>
+      <Dependent Role="Investment">
+        <PropertyRef Name="InvestType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subsidiaries_CompanyName">
+    <End Role="CompanyName" Type="Self.CompanyName" Multiplicity="1" />
+    <End Role="Subsidiaries" Type="Self.Subsidiaries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyName">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="Subsidiaries">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subsidiaries_SubsidiariesType">
+    <End Role="SubsidiariesType" Type="Self.SubsidiariesType" Multiplicity="1" />
+    <End Role="Subsidiaries" Type="Self.Subsidiaries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubsidiariesType">
+        <PropertyRef Name="SubType" />
+      </Principal>
+      <Dependent Role="Subsidiaries">
+        <PropertyRef Name="SubType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SubsidiariesModel1StoreContainer">
+    <EntitySet Name="Association" EntityType="Self.Association" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssociationType" EntityType="Self.AssociationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyName" EntityType="Self.CompanyName" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyType" EntityType="Self.CompanyType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exchange" EntityType="Self.Exchange" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Investment" EntityType="Self.Investment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvestmentType" EntityType="Self.InvestmentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subsidiaries" EntityType="Self.Subsidiaries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubsidiariesType" EntityType="Self.SubsidiariesType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Association_CompanyName" Association="Self.FK_Association_CompanyName">
+      <End Role="CompanyName" EntitySet="CompanyName" />
+      <End Role="Association" EntitySet="Association" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssociationType" Association="Self.FK_AssociationType">
+      <End Role="AssociationType" EntitySet="AssociationType" />
+      <End Role="Association" EntitySet="Association" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyName_CompanyName" Association="Self.FK_CompanyName_CompanyName">
+      <End Role="Exchange" EntitySet="Exchange" />
+      <End Role="CompanyName" EntitySet="CompanyName" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyName_CompanyName1" Association="Self.FK_CompanyName_CompanyName1">
+      <End Role="CompanyType" EntitySet="CompanyType" />
+      <End Role="CompanyName" EntitySet="CompanyName" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Investment_CompanyName" Association="Self.FK_Investment_CompanyName">
+      <End Role="CompanyName" EntitySet="CompanyName" />
+      <End Role="Investment" EntitySet="Investment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Investment_InvestmentType" Association="Self.FK_Investment_InvestmentType">
+      <End Role="InvestmentType" EntitySet="InvestmentType" />
+      <End Role="Investment" EntitySet="Investment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subsidiaries_CompanyName" Association="Self.FK_Subsidiaries_CompanyName">
+      <End Role="CompanyName" EntitySet="CompanyName" />
+      <End Role="Subsidiaries" EntitySet="Subsidiaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subsidiaries_SubsidiariesType" Association="Self.FK_Subsidiaries_SubsidiariesType">
+      <End Role="SubsidiariesType" EntitySet="SubsidiariesType" />
+      <End Role="Subsidiaries" EntitySet="Subsidiaries" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
