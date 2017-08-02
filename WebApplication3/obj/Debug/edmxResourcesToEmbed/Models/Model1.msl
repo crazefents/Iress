@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SubsidiariesModelStoreContainer" CdmEntityContainer="SubsidiariesEntities">
+  <EntityContainerMapping StorageEntityContainer="SubsidiariesModelStoreContainer" CdmEntityContainer="SubsidiariesEntities3">
     <EntitySetMapping Name="Associations">
       <EntityTypeMapping TypeName="SubsidiariesModel.Association">
         <MappingFragment StoreEntitySet="Association">
@@ -35,6 +35,7 @@
           <ScalarProperty Name="BusinessSectorID" ColumnName="BusinessSectorID" />
           <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
           <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CorpInfo" ColumnName="CorpInfo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -114,5 +115,83 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getAllCompanyNames" FunctionName="SubsidiariesModel.Store.getAllCompanyNames" />
+    <FunctionImportMapping FunctionImportName="getAss" FunctionName="SubsidiariesModel.Store.getAss">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SubsidiariesModel.getAss_Result">
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="AssPercent" ColumnName="AssPercent" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="DirectRel" ColumnName="DirectRel" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getCompanyNames" FunctionName="SubsidiariesModel.Store.getCompanyNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SubsidiariesModel.getCompanyNames_Result">
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanyTypeDesc" ColumnName="CompanyTypeDesc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getInv" FunctionName="SubsidiariesModel.Store.getInv">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SubsidiariesModel.getInv_Result">
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="InvPercent" ColumnName="InvPercent" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="DirectRel" ColumnName="DirectRel" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getSub" FunctionName="SubsidiariesModel.Store.getSub">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SubsidiariesModel.getSub_Result">
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="SubPercent" ColumnName="SubPercent" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="DirectRel" ColumnName="DirectRel" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Holdin" FunctionName="SubsidiariesModel.Store.Holdin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SubsidiariesModel.Holdin_Result">
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="SubPercent" ColumnName="SubPercent" />
+          <ScalarProperty Name="NoShares_YN" ColumnName="NoShares_YN" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="DirectRel" ColumnName="DirectRel" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SubsidiariesModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SubsidiariesModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SubsidiariesModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SubsidiariesModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SubsidiariesModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SubsidiariesModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SubsidiariesModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SubsidiariesModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SubsidiariesModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

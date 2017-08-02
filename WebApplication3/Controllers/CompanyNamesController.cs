@@ -12,7 +12,7 @@ namespace WebApplication3.Controllers
 {
     public class CompanyNamesController : Controller
     {
-        private SubsidiariesEntities db = new SubsidiariesEntities();
+        private SubsidiariesEntities3 db = new SubsidiariesEntities3();
 
         // GET: CompanyNames
         //public ActionResult Index()
@@ -36,8 +36,12 @@ namespace WebApplication3.Controllers
    //     }
 
 
-        public ActionResult Index(string CompanyTypeID,string ExchangeCode, string searchString)
+        public ActionResult Index(string CompanyTypeID,string ExchangeCode, string searchString, string searchBy)
         {
+
+            string searchby = "Company Name" + "Short Code" + "CountryID" + "BusinessSectorID";
+
+
             var GenreLst = new List<string>();
 
             var GenreQry = from d in db.CompanyNames
@@ -57,13 +61,21 @@ namespace WebApplication3.Controllers
             TypLst.AddRange(TypQry.Distinct());
             ViewBag.CompanyTypeID = new SelectList(db.CompanyTypes, "CompanyTypeID", "CompanyTypeDesc");
 
+            ViewBag.searchBy = new SelectList(db.CompanyNames, "searchby");
+             
+
             var companyNames = from m in db.CompanyNames
                                select m;
+
+
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 companyNames = companyNames.Where(s => s.CompanyName1.Contains(searchString));
+
+
             }
+            
 
             if (!string.IsNullOrEmpty(ExchangeCode))
             {
@@ -113,7 +125,7 @@ namespace WebApplication3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
+        public ActionResult Create([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
         {
             if (ModelState.IsValid)
             {
@@ -149,7 +161,7 @@ namespace WebApplication3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
+        public ActionResult Edit([Bind(Include = "CompanyID,ExchangeCode,CompanyName1,ShortCode,CorpInfo,CountryID,BusinessSectorID,CompanyTypeID,UpdateDate")] CompanyName companyName)
         {
             if (ModelState.IsValid)
             {

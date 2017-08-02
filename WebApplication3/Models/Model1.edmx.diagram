@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="93e1734696204cd3b991938c6fdf7948" Name="Diagram1">
-        <EntityTypeShape EntityType="SubsidiariesModel.Association" Width="1.5" PointX="4" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.AssociationType" Width="1.5" PointX="2.125" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.CompanyName" Width="1.5" PointX="6" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.CompanyType" Width="1.5" PointX="3.5" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.Exchange" Width="1.5" PointX="1.625" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.Investment" Width="1.5" PointX="8.125" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.InvestmentType" Width="1.5" PointX="10.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.Subsidiary" Width="1.5" PointX="8.125" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SubsidiariesModel.SubsidiariesType" Width="1.5" PointX="10.125" PointY="1.25" IsExpanded="true" />
+      <Diagram DiagramId="4cef7ea1b86148baa857f81c14880831" Name="Diagram1">
+        <EntityTypeShape EntityType="SubsidiariesModel.Association" Width="1.5" PointX="4.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.AssociationType" Width="1.5" PointX="4.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.CompanyName" Width="1.5" PointX="0.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.CompanyType" Width="1.625" PointX="2.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.Exchange" Width="1.5" PointX="0.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.Investment" Width="1.5" PointX="8.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.InvestmentType" Width="1.5" PointX="8.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.Subsidiary" Width="1.5" PointX="6.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SubsidiariesModel.SubsidiariesType" Width="1.5" PointX="6.75" PointY="5.875" IsExpanded="true" />
         <AssociationConnector Association="SubsidiariesModel.FK_Association_CompanyName" ManuallyRouted="false" />
         <AssociationConnector Association="SubsidiariesModel.FK_AssociationType" ManuallyRouted="false" />
         <AssociationConnector Association="SubsidiariesModel.FK_CompanyName_CompanyName" ManuallyRouted="false" />

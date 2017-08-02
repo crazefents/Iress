@@ -26,10 +26,12 @@ namespace WebApplication3.Models
         public string ExchangeCode { get; set; }
         public string CompanyName1 { get; set; }
         public string ShortCode { get; set; }
+        public string CorpInfo { get; set; }
         public string CountryID { get; set; }
         public string BusinessSectorID { get; set; }
         public string CompanyTypeID { get; set; }
         public System.DateTime UpdateDate { get; set; }
+       
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Association> Associations { get; set; }

@@ -19,6 +19,8 @@
         </p>
         <p>
         Type of Company: @Html.DropDownList("CompanyTypeID", "All")
+            Search by: @Html.DropDownList("SearchBy","All")
+
             </p>
             <p>
         Enter Search: @Html.TextBox("SearchString") <br />
@@ -26,8 +28,7 @@
     </p>
     }
     
-</p>
-<table class="table table-striped info table-hover ">
+<table class="table success info table-hover ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CompanyName1)
@@ -35,6 +36,9 @@
       <th>
           @Html.DisplayNameFor(model => model.ShortCode)
        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorpInfo)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.CountryID)
         </th>
@@ -60,6 +64,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ShortCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorpInfo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CountryID)

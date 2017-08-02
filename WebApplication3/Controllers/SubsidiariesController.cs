@@ -12,7 +12,7 @@ namespace WebApplication3.Controllers
 {
     public class SubsidiariesController : Controller
     {
-        private SubsidiariesEntities db = new SubsidiariesEntities();
+        private SubsidiariesEntities3 db = new SubsidiariesEntities3();
 
         // GET: Subsidiaries
         public ActionResult Index()

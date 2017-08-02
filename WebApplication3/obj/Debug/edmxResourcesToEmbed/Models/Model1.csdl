@@ -36,6 +36,7 @@
     <Property Name="BusinessSectorID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="CompanyTypeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CorpInfo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Associations" Relationship="Self.FK_Association_CompanyName" FromRole="CompanyName" ToRole="Association" />
     <NavigationProperty Name="Exchange" Relationship="Self.FK_CompanyName_CompanyName" FromRole="CompanyName" ToRole="Exchange" />
     <NavigationProperty Name="CompanyType" Relationship="Self.FK_CompanyName_CompanyName1" FromRole="CompanyName" ToRole="CompanyType" />
@@ -215,7 +216,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="SubsidiariesEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="SubsidiariesEntities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Associations" EntityType="Self.Association" />
     <EntitySet Name="AssociationTypes" EntityType="Self.AssociationType" />
     <EntitySet Name="CompanyNames" EntityType="Self.CompanyName" />
@@ -258,5 +259,97 @@
       <End Role="SubsidiariesType" EntitySet="SubsidiariesTypes" />
       <End Role="Subsidiaries" EntitySet="Subsidiaries" />
     </AssociationSet>
+    <FunctionImport Name="getAllCompanyNames" ReturnType="Collection(String)">
+      <Parameter Name="Exchange" Mode="In" Type="String" />
+      <Parameter Name="CompanyType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getAss" ReturnType="Collection(SubsidiariesModel.getAss_Result)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getCompanyNames" ReturnType="Collection(SubsidiariesModel.getCompanyNames_Result)">
+      <Parameter Name="Exchangename" Mode="In" Type="String" />
+      <Parameter Name="CompanyType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getInv" ReturnType="Collection(SubsidiariesModel.getInv_Result)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getSub" ReturnType="Collection(SubsidiariesModel.getSub_Result)">
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Holdin" ReturnType="Collection(SubsidiariesModel.Holdin_Result)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SubsidiariesModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SubsidiariesModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
+  <ComplexType Name="getAss_Result">
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="AssPercent" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="DirectRel" Nullable="false" MaxLength="255" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="getCompanyNames_Result">
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="CompanyTypeDesc" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="getInv_Result">
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="InvPercent" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="DirectRel" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="getSub_Result">
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="SubPercent" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="DirectRel" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Holdin_Result">
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="SubPercent" Nullable="false" />
+    <Property Type="Int32" Name="NoShares_YN" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="DirectRel" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>
